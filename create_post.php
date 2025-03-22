@@ -1,9 +1,9 @@
 <?php
-require '../config/db.php';
+require '..blog.sql';
 session_start();
 
 if (!isset($_SESSION['usuario'])) {
-    header("Location: ../index.php");
+    header("Location:index.php");
     exit();
 }
 

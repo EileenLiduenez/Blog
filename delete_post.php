@@ -14,7 +14,7 @@ $stmt = $conn->prepare("DELETE FROM entradas WHERE id=? AND usuario_id=?");
 $stmt->bind_param("ii", $id, $usuario_id);
 
 if ($stmt->execute()) {
-    header("Location: ../index.php");
+    header("Location: index.php");
 } else {
     echo "Error al eliminar entrada.";
 }

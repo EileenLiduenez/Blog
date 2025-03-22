@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("ssii", $titulo, $contenido, $categoria_id, $usuario_id);
 
         if ($stmt->execute()) {
-            header("Location: ../index.php");
+            header("Location: index.php");
         } else {
             echo "Error al crear entrada.";
         }

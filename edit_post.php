@@ -1,9 +1,9 @@
 <?php
-require '../config/db.php';
+require 'blog.sql';
 session_start();
 
 if (!isset($_SESSION['usuario'])) {
-    header("Location: ../index.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssiii", $titulo, $contenido, $categoria_id, $id, $usuario_id);
 
     if ($stmt->execute()) {
-        header("Location: ../index.php");
+        header("Location: index.php");
     } else {
         echo "Error al actualizar entrada.";
     }

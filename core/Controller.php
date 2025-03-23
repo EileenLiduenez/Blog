@@ -1,21 +1,37 @@
 <?php
+require_once "config/database.php"; // Para acceso a la base de datos
+
 class Controller {
-    public function loadModel($model) {
-        require_once "models/" . $model . ".php";
-        return new $model();
+    protected $db;
+
+    public function __construct() {
+        $this->db = Database::connect(); // Conectar la base de datos automáticamente
     }
 
+    public function loadModel($model) {
+        $modelPath = "models/" . $model . ".php";
+        if (file_exists($modelPath)) {
+            require_once $modelPath;
+            return new $model();
+        } else {
+            die("Error: El modelo '$model' no existe.");
+        }
+    }
 
     public function loadView($view, $data = []) {
         extract($data);
-        $viewFile = "views/" . $view;
-        
-        if (!str_ends_with($viewFile, ".php")) {
-            $viewFile .= ".php";
+        $viewFile = __DIR__ . "/../views/" . $view . ".php";
+
+        if (file_exists($viewFile)) {
+            require_once $viewFile;
+        } else {
+            die("Error: La vista '$view' no existe.");
         }
-    
-        require_once $viewFile;
     }
-    
+
+    public function redirect($url) {
+        header("Location: $url");
+        exit();
+    }
 }
 ?>

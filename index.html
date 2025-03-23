@@ -1,53 +1,145 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Emo</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header id="cabecera">
-        <h1 id="logo">Mi Blog Emo</h1>
-    </header>
-    
-    <nav id="menu">
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Categorías</a></li>
-            <li><a href="#">Publicaciones</a></li>
-        </ul>
-    </nav>
-    
-    <div id="contenedor">
-        <aside id="sidebar">
-            <div class="bloque">
-                <h3>Registro</h3>
-                <form>
-                    <input type="text" placeholder="Nombre" required>
-                    <input type="email" placeholder="Correo electrónico" required>
-                    <input type="password" placeholder="Contraseña" required>
-                    <button class="boton" type="submit">Registrarse</button>
-                </form>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Diario de un Alma Perdida</title>
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body>
+        <!-- CABECERA -->
+        <header id="cabecera">
+            <div id="logo">
+                <a href="index.php">Diario de un Alma Perdida</a>
             </div>
-            <div class="bloque">
-                <h3>Login</h3>
-                <form>
-                    <input type="email" placeholder="Correo electrónico" required>
-                    <input type="password" placeholder="Contraseña" required>
-                    <button class="boton" type="submit">Ingresar</button>
-                </form>
-            </div>
-        </aside>
+            
+            <!-- MENU -->
+            <nav id="menu">
+                <ul>
+                    <li><a href="/index.html">inicio</a></li>
+                    <li><a href="/categorias/sobremos.html">Sobre emos</a></li>
+                    <li><a href="/categorias/love.html">Emo Love</a></li>
+                    <li><a href="/categorias/about.html">Sobre Mí</a></li>
+                </ul>
+            </nav>
+        </header>
         
-        <main id="principal">
-            <h1>Bienvenido a Mi Blog Emo</h1>
-            <p>Explora los pensamientos más oscuros y profundos.</p>
-        </main>
-    </div>
+        <div id="contenedor">
+            <!-- BARRA LATERAL -->
+            <aside id="sidebar">
+                <div id="buscador" class="bloque">
+                    <h3>🔍 Pozo sin Fondo</h3>
+                    <form action="buscar.php" method="POST"> 
+                        <input type="text" name="busqueda" placeholder="Busca en la oscuridad..." required>
+                        <input type="submit" value="Buscar">
+                    </form>
+                </div>
+                
+                <div id="login" class="bloque">
+                    <h3>🔒 Inicia Sesión</h3>
+                    <form action="login.php" method="POST"> 
+                        <label for="email">Correo Oscuro</label>
+                        <input type="email" id="email" name="email" required>
+                        
+                        <label for="password">Llave del Dolor</label>
+                        <input type="password" id="password" name="password" required>
+                        
+                        <input type="submit" value="Entrar al Abismo">
+                    </form>
+                </div>
+
+                <div id="register" class="bloque">
+                    <h3>📜 Registro</h3>
+
+                    <!-- Mensajes de validación -->
+                    <div class="alerta alerta-exito" style="display: none;">
+                        Se registró correctamente.
+                    </div>
+                    <div class="alerta alerta-error" style="display: none;">
+                        Error en algún dato, por favor verifica.
+                    </div>
+                    
+                    <form action="registro.php" method="POST"> 
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                        
+                        <label for="apellidos">Apellidos</label>
+                        <input type="text" id="apellidos" name="apellidos" required>
+                        
+                        <label for="email">Email</label>
+                        <input type="email" id="email_registro" name="email" required>
+                        
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password_registro" name="password" required>
+                        
+                        <input type="submit" name="submit" value="Registrar">
+                    </form>
+                </div>
+            </aside>
+            
+       <!-- CAJA PRINCIPAL -->
+<main id="principal">
+    <h1>🖤 ÚltImos LamEntoz</h1>
     
-    <footer id="pie">
-        <p>&copy; 2025 Mi Blog Emo. Todos los derechos reservados.</p>
-    </footer>
-</body>
+<!-- Comentario 1 -->
+<div class="comentario">
+    <div class="comentario-header">
+        <span class="comentario-correo">mi.vacio@oscuro.com</span>
+        <span class="comentario-hora">22 de marzo, 2025 - 10:30 AM</span>
+    </div>
+    <p class="comentario-texto">Olaa… soy Sasha, aunque me llaman "El alma rota". A veces siento que ya no hay mucho de mí para compartir, pero aquí estoy, buscando personas que, como yo, viven en la sombra. Tengo 15 años, aunque no me creas, a veces siento que tengo más... El vacío me consume, pero aún quiero encontrar alguien que entienda este dolor que llevo dentro. Busco amigos que no me juzguen, que también se sientan perdidos en este mundo gris. Ojalá alguien me entienda, aunque sea por un momento... </p>
+</div>
+
+<!-- Comentario 2 -->
+<div class="comentario">
+    <div class="comentario-header">
+        <span class="comentario-correo">corazon.quebrado@olvidado.com</span>
+        <span class="comentario-hora">22 de marzo, 2025 - 11:00 AM</span>
+    </div>
+    <p class="comentario-texto">hoOla yo soy mairym tengo 14 años, vivo en mexico d.f
+
+        soy pz no muy blanquita, pero algo
+        mido 1.62
+        delgada
+        cabello cafe obscuro un poco corto
+        ojos verdes
+        me gusta ser emo, por que me guZta ser diferente
+        a todas las demas
+        aun asi, tengo un eZtiloO propiiO
+        diiCen que ZtOy bn loka je je
+        una buena amiga
+        con buen humor (noO te aburres)
+        y buena Oonda
+        
+        
+        buZcoO un xHavo emoO je je (guapoO) si se puede
+        noO sea gordoO
+        simpatiicoO
+        de mii eDad o un año maYoOr que yo tal vez 2 peroO noO mas
+        que noO le guzte estar coOn otras xHavas (oseaZe mujerieGoO)
+        que me quiera
+        que eZte conmigoO en laZ buenaZ y las malaZ
+        y que me Haga ReiiR
+        
+        soy maiirym
+        
+        mairym_kix@hotmail.com <---------mi correo</p>
+</div>
+
+    
+    <!-- Botón para ver más comentarios -->
+    <div id="ver-todas">
+        <a href="comentarios.php" class="boton-ver-todas">Editar entrada</a>
+        <a href="comentarios.php" class="boton-ver-todas">editar cometarios</a>
+    </div>
+</main>
+        </div> 
+        
+        <!-- PIE DE PÁGINA -->
+        <footer id="pie">
+            <p>Creado con lágrimas y dolor &copy; 2025</p>
+        </footer>
+        
+        <script src="assets/js/interaccion.js"></script>
+    </body>
 </html>

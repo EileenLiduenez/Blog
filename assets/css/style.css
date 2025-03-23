@@ -16,7 +16,7 @@
 }
 
 body{
-    background: url(../img/cubes.png) #F4F4F4;
+    background: url(/assets/img/descarga\ \(19\).jpg) #F4F4F4;
 }
 
 .alerta{
@@ -55,58 +55,86 @@ body{
     height: 110px;
 }
 
-#logo a{
-    font-family: "Montserrat", sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=UnifrakturMaguntia&display=swap');
+
+#logo a {
+    font-family: "Creepster", cursive; /* Alternativamente: "UnifrakturMaguntia", serif */
     font-weight: 900;
-    font-size: 40px;
-    color: #2979CD;
-    transition: all 500ms;
+    font-size: 50px;
+    color: #ffffff; /* Blanco puro */
+    text-shadow: 3px 3px 5px #000000, 0px 0px 10px #ff0000; /* Sombra negra con un ligero brillo rojo */
+    transition: all 300ms ease-in-out;
     line-height: 90px;
     margin-left: 10px;
 }
 
+#logo a:hover {
+    color: #ff0000; /* Rojo sangre */
+    text-shadow: 5px 5px 10px #000000, 0px 0px 15px #ff0000; /* Sombra más intensa en hover */
+    transform: scale(1.1); /* Efecto de agrandamiento */
+}
+
+
 /*MENU*/
-#menu{
+#menu {
     clear: both;
     width: 100%;
     height: 45px;
-    background: linear-gradient(to bottom, #f9f9f9 0px, #e9e9e9 100%);
-    border: 1px solid #C9C9C9;
+    background: black;
+    border: 1px solid #444;
     border-radius: 8px;
-    box-shadow: 0px 1px 1px #ccc;
+    box-shadow: 0px 2px 5px black;
     overflow: hidden;
 }
 
-#menu ul{
+#menu ul {
     list-style: none;
 }
 
-#menu ul li{
+#menu ul li {
     float: left;
     line-height: 44px;
-    border-right: 1px solid #D6D6D6;
+    border-right: 1px solid #222;
 }
 
-#menu ul li a{
+#menu ul li a {
     display: block;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 15px;
-    color: #838282;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 16px;
+    color: white;
+    transition: all 0.3s ease-in-out;
 }
 
-#menu ul li a:hover{
-    background: linear-gradient(to bottom, #f2f2f2 0px, #dad9d4 100%);
+#menu ul li a:hover {
+    background: #550000;
+    box-shadow: 0px 0px 10px #ff0000;
+    color: #fff;
 }
 
-/*CONTENIDO*/
-#contenedor{
+/* CONTENIDO */
+#contenedor {
     width: 85%;
     height: auto;
-/*    min-height: 600px;*/
     margin: 0px auto;
     margin-top: 30px;
     margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 15px black;
+    border-radius: 8px;
+}
+/* CONTENIDO */
+#contenedor {
+    width: 85%;
+    height: auto;
+    margin: 0px auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 15px black;
+    border-radius: 8px;
 }
 
 /*BARRA LATERAL*/
@@ -116,133 +144,245 @@ body{
     height: auto;
 }
 
-.bloque{
-    display:block;
+.bloque {
+    display: block;
     width: 90%;
-    margin: 0px auto;
-    margin-bottom: 35px;
-    background: white;
+    margin: 0px auto 35px;
+    background: #111; /* Negro oscuro */
     padding: 15px;
-    box-shadow: 0px 0px 1px rgba(0,0,0,0.3), 0px 3px 7px rgba(0,0,0,0.3), 0px 0px 1px #FFFFFF inset, 0px -3px 2px rgba(0,0,0,0.25) inset; 
+    box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.3), 
+                0px 5px 10px rgba(255, 0, 0, 0.2), 
+                0px 0px 2px #ff0000 inset, 
+                0px -3px 2px rgba(0, 0, 0, 0.5) inset;
+    border: 1px solid #444;
+    color: white;
 }
 
-.bloque h3{
+.bloque h3 {
     margin-bottom: 15px;
+    font-family: "Creepster", cursive; /* Fuente más emo */
+    color: #ff0000; /* Rojo sangre */
 }
 
 label,
 input[type="text"],
 input[type="email"],
-input[type="password"]{
+input[type="password"] {
     display: block;
     width: 95%;
-    margin-top:2px;
-    margin-bottom: 2px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"]{
+    margin: 2px 0;
+    background: #222; /* Fondo oscuro */
+    color: white;
+    border: 1px solid #ff0000;
     padding: 5px;
-    margin-bottom: 10px;
+    font-family: "UnifrakturMaguntia", serif; /* Gótico */
 }
 
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #ffffff;
+    outline: none;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.7);
+}
+
+/* Estilos para los botones */
 input[type="button"],
 input[type="submit"],
-.boton{
-    margin-top: 5px;
-    margin-bottom: 5px;
+.boton {
+    margin: 5px 0;
     display: block;
-    border-radius: 2px;
-    color:white;
-    background: #007ee5;
-    border: 1px solid #156785;
-    cursor:pointer;
-    padding: 7px;
+    border-radius: 5px;
+    color: white;
+    background: #222;
+    border: 1px solid #ff0000;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 5px black;
+    transition: all 0.3s ease-in-out;
 }
 
-.boton{
-    color:white !important;
-    text-align: center;
-    width: 130px;
+.boton:hover {
+    background: #ff0000;
+    border-color: #ffffff;
+    text-shadow: 0px 0px 5px white;
+    transform: scale(1.1);
 }
 
-.boton-naranja{
-    background: orange;
-    border-color: #bd7d08;
+/* Estilos específicos para botones de colores */
+.boton-naranja {
+    background: #aa3d00;
+    border-color: #ff5500;
 }
 
-.boton-verde{
-    background: #21b921;
-    border-color: green;
+.boton-verde {
+    background: #006600;
+    border-color: #00ff00;
 }
 
-.boton-rojo{
-    background: red;
-    border-color: #444;
+.boton-rojo {
+    background: #990000;
+    border-color: #ff0000;
 }
+
+.boton-naranja:hover,
+.boton-verde:hover,
+.boton-rojo:hover {
+    filter: brightness(1.3);
+    transform: scale(1.1);
+}
+
 
 
 /*PRINCIPAL*/
-#principal{
+#principal {
     float: left;
     width: 65%;
     min-height: 572px;
-    background:white;
+    background: #111; /* Negro profundo */
     border-radius: 5px;
-    box-shadow: 0px 0px 5px #ccc;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.4);
     margin-left: 20px;
     padding: 20px;
     overflow: hidden;
+    border: 1px solid #333;
 }
 
-#principal a{
-    color: #333;
+#principal a {
+    color: #ff0000; /* Rojo sangre */
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
 }
 
-#principal h1{
-    font-size: 32px;
-    color: #444;
-    text-shadow: 1px 1px 2px #ccc;
-    font-family: "Montserrat", sans-serif;
+#principal a:hover {
+    text-shadow: 0px 0px 10px #ff0000;
+    transform: scale(1.1);
 }
 
-#principal h2{
-    font-size: 20px;
-    color: #2979CD;
-    text-shadow: 1px 1px 2px #ccc;
-    font-family: "Montserrat", sans-serif;
+#principal h1 {
+    font-size: 40px;
+    color: #fff;
+    text-shadow: 3px 3px 5px #ff0000, 0px 0px 10px black;
+    font-family: "Creepster", cursive; /* Fuente más emo */
+}
+
+#principal h2 {
+    font-size: 24px;
+    color: #ff4444;
+    text-shadow: 2px 2px 5px black;
+    font-family: "UnifrakturMaguntia", serif;
     margin-top: 25px;
 }
 
-#principal p{
+#principal p {
     margin-top: 8px;
+    color: #ddd;
+    font-size: 16px;
 }
 
-#ver-todas a{
+#ver-todas a {
     display: block;
-    border-radius: 2px;
+    border-radius: 5px;
     padding: 15px;
-    color:white;
-    background: #007ee5;
-    border: 1px solid #156785;
-    cursor:pointer;
+    color: white;
+    background: #222;
+    border: 1px solid #ff0000;
+    cursor: pointer;
     width: 160px;
-    margin: 0px auto;
-    margin-top:50px;
+    margin: 50px auto 0;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 2px 2px 5px black;
 }
+
+#ver-todas a:hover {
+    background: #ff0000;
+    border-color: #fff;
+    text-shadow: 0px 0px 10px white;
+    transform: scale(1.1);
+}
+
 
 /*PIE DE PAGINA*/
-#pie{
-    clear:both;
+#pie {
+    clear: both;
     width: 85%;
     margin: 0px auto;
-    background: linear-gradient(to bottom, #f9f9f9 0px, #e9e9e9 100%);
-    border: 1px solid #c9c9c9;
+    background: linear-gradient(to bottom, #111 0%, #000 100%); /* Degradado oscuro */
+    border: 1px solid #222;
     border-bottom: none;
     border-radius: 8px 8px 0px 0px;
-    color: #666;
+    color: #ccc;
     height: auto;
     padding: 15px;
     text-align: center;
+    box-shadow: 0px -2px 10px black;
+}
+
+#pie a {
+    color: #ff4444;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+#pie a:hover {
+    color: #ff0000;
+    text-shadow: 0px 0px 10px #ff0000;
+}
+/* Estilo para los comentarios */
+.comentario {
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    color: #fff; /* Texto blanco */
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Encabezado del comentario */
+.comentario-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #aaa; /* Texto gris claro */
+}
+
+/* Correo del usuario */
+.comentario-correo {
+    font-weight: bold;
+    color: #ff0000; /* Rojo sangre */
+}
+
+/* Hora del comentario */
+.comentario-hora {
+    font-style: italic;
+}
+
+/* Texto del comentario */
+.comentario-texto {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ddd; /* Gris claro */
+}
+
+/* Botón para ver más comentarios */
+.boton-ver-todas {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #550000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.boton-ver-todas:hover {
+    background: #800000;
 }

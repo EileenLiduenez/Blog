@@ -1,5 +1,5 @@
 <?php
-require 'blog.sql;
+require 'blog.sql';
 session_start();
 
 if (!isset($_SESSION['usuario'])) {

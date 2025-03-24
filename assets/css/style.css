@@ -73,8 +73,6 @@ body{
     text-shadow: 5px 5px 10px #000000, 0px 0px 15px #ff0000; /* Sombra más intensa en hover */
     transform: scale(1.1); /* Efecto de agrandamiento */
 }
-
-
 /*MENU*/
 #menu {
     clear: both;
@@ -111,19 +109,11 @@ body{
     box-shadow: 0px 0px 10px #ff0000;
     color: #fff;
 }
-
-/* CONTENIDO */
-#contenedor {
-    width: 85%;
-    height: auto;
-    margin: 0px auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 0px 15px black;
-    border-radius: 8px;
+#menu ul li a.active {
+    background: #bd1b1bd8; 
+    color: #fff;
 }
+
 /* CONTENIDO */
 #contenedor {
     width: 85%;
@@ -143,6 +133,7 @@ body{
     width: 27%;
     height: auto;
 }
+
 
 .bloque {
     display: block;
@@ -200,8 +191,6 @@ input[type="submit"],
     padding: 10px;
     font-weight: bold;
     text-transform: uppercase;
-    text-shadow: 2px 2px 5px black;
-    transition: all 0.3s ease-in-out;
 }
 
 .boton:hover {
@@ -212,30 +201,20 @@ input[type="submit"],
 }
 
 /* Estilos específicos para botones de colores */
-.boton-naranja {
-    background: #aa3d00;
-    border-color: #ff5500;
+
+.boton-login{     margin: 5px 0;
+    display: block;
+    border-radius: 5px;
+    color: white;
+    background: #222;
+    border: 1px solid #ff0000;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 5px black;
+    transition: all 0.3s ease-in-out; 
 }
-
-.boton-verde {
-    background: #006600;
-    border-color: #00ff00;
-}
-
-.boton-rojo {
-    background: #990000;
-    border-color: #ff0000;
-}
-
-.boton-naranja:hover,
-.boton-verde:hover,
-.boton-rojo:hover {
-    filter: brightness(1.3);
-    transform: scale(1.1);
-}
-
-
-
 /*PRINCIPAL*/
 #principal {
     float: left;
@@ -281,58 +260,6 @@ input[type="submit"],
     color: #ddd;
     font-size: 16px;
 }
-
-#ver-todas a {
-    display: block;
-    border-radius: 5px;
-    padding: 15px;
-    color: white;
-    background: #222;
-    border: 1px solid #ff0000;
-    cursor: pointer;
-    width: 160px;
-    margin: 50px auto 0;
-    text-align: center;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: all 0.3s ease-in-out;
-    text-shadow: 2px 2px 5px black;
-}
-
-#ver-todas a:hover {
-    background: #ff0000;
-    border-color: #fff;
-    text-shadow: 0px 0px 10px white;
-    transform: scale(1.1);
-}
-
-
-/*PIE DE PAGINA*/
-#pie {
-    clear: both;
-    width: 85%;
-    margin: 0px auto;
-    background: linear-gradient(to bottom, #111 0%, #000 100%); /* Degradado oscuro */
-    border: 1px solid #222;
-    border-bottom: none;
-    border-radius: 8px 8px 0px 0px;
-    color: #ccc;
-    height: auto;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0px -2px 10px black;
-}
-
-#pie a {
-    color: #ff4444;
-    font-weight: bold;
-    transition: all 0.3s ease-in-out;
-}
-
-#pie a:hover {
-    color: #ff0000;
-    text-shadow: 0px 0px 10px #ff0000;
-}
 /* Estilo para los comentarios */
 .comentario {
     background: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
@@ -373,16 +300,63 @@ input[type="submit"],
 
 /* Botón para ver más comentarios */
 .boton-ver-todas {
-    display: inline-block;
+
     padding: 10px 20px;
-    background: #550000;
+    background: #00000077;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-    transition: background 0.3s ease;
+
 }
 
-.boton-ver-todas:hover {
-    background: #800000;
+
+.perfiles {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.perfil {
+    background-color: #222; /* Fondo oscuro para cada perfil */
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+}
+
+.perfil img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Hace que la imagen sea un círculo */
+    border: 3px solid #666; /* Borde gris oscuro */
+    object-fit: cover;
+}
+
+/*PIE DE PAGINA*/
+#pie {
+    clear: both;
+    width: 85%;
+    margin: 0px auto;
+    background: linear-gradient(to bottom, #111 0%, #000 100%); /* Degradado oscuro */
+    border: 1px solid #222;
+    border-bottom: none;
+    border-radius: 8px 8px 0px 0px;
+    color: #ccc;
+    height: auto;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px -2px 10px black;
+}
+
+#pie a {
+    color: #ff4444;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+#pie a:hover {
+    color: #ff0000;
+    text-shadow: 0px 0px 10px #ff0000;
 }

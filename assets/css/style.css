@@ -8,15 +8,12 @@
     padding: 0px;
     font-family: sans-serif, Helvetica, Arial;
     text-decoration: none;
+    
 }
 
-.clearfix{
-    clear: both;
-    float: none;
-}
 
 body{
-    background: url(/assets/img/descarga\ \(19\).jpg) #F4F4F4;
+    background: url(assets/img/fondo.jpg);
 }
 
 .alerta{
@@ -52,20 +49,20 @@ body{
 /*LOGOTIPO*/
 #logo{
     text-align: center;
-    height: 110px;
+    margin: 20px;
 }
+
+
 
 @import url('https://fonts.googleapis.com/css2?family=Creepster&family=UnifrakturMaguntia&display=swap');
 
 #logo a {
     font-family: "Creepster", cursive; /* Alternativamente: "UnifrakturMaguntia", serif */
     font-weight: 900;
-    font-size: 50px;
+    font-size: 40px;
     color: #ffffff; /* Blanco puro */
     text-shadow: 3px 3px 5px #000000, 0px 0px 10px #ff0000; /* Sombra negra con un ligero brillo rojo */
     transition: all 300ms ease-in-out;
-    line-height: 90px;
-    margin-left: 10px;
 }
 
 #logo a:hover {
@@ -116,12 +113,11 @@ body{
 
 /* CONTENIDO */
 #contenedor {
-    width: 85%;
+    width: 80%;
     height: auto;
     margin: 0px auto;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 20px;
     background: rgba(0, 0, 0, 0.8);
     box-shadow: 0px 0px 15px black;
     border-radius: 8px;

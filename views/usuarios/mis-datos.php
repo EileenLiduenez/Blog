@@ -1,4 +1,5 @@
-<?php if (!isset($_SESSION["usuario"])) {
+<?php /*
+if (!isset($_SESSION["usuario"])) {
     echo "<script>alert('Debes iniciar sesión para ver tus datos.'); window.location.href='index.php';</script>";
     exit();
 } ?>
@@ -25,3 +26,4 @@
 
     <input type="submit" value="Actualizar" class="boton">
 </form>
+*/

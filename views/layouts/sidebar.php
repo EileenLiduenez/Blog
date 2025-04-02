@@ -1,8 +1,8 @@
-<aside id="sidebar">
+
     <!-- 🔍 Buscador -->
     <div id="buscador" class="bloque">
         <h3>🔍 Buscar</h3>
-        <form action="index.php?view=buscar" method="POST"> 
+        <form action="buscar.php" method="POST"> 
             <input type="text" name="busqueda" placeholder="Busca en la oscuridad..." required>
             <input type="submit" value="Buscar">
         </form>
@@ -12,7 +12,7 @@
         <!-- 🔒 Login -->
         <div id="login" class="bloque">
             <h3>🔒 Inicia Sesión</h3>
-            <form action="index.php?view=usuarios/login" method="POST"> 
+            <form action="login.php" method="POST"> 
                 <label for="email">Correo</label>
                 <input type="email" id="email" name="email" required>
                 
@@ -26,7 +26,7 @@
         <!-- 📜 Registro -->
         <div id="register" class="bloque">
             <h3>📜 Registro</h3>
-            <form action="index.php?view=usuarios/registro" method="POST"> 
+            <form action="registro.php" method="POST"> 
                 <label for="nombre">Nombre</label>
                 <input type="text" id="nombre" name="nombre" required>
                 
@@ -44,20 +44,14 @@
         </div>
 
     <?php else : ?>
-        <?php
-session_start();
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
-?>
         <!-- 👤 Usuario logueado -->
         <div id="usuario" class="bloque">
-            <h3>Bienvenido, <?= $_SESSION['usuario']['nombre'] ?></h3>
+            <h3>Bienvenido, <?= htmlspecialchars($_SESSION['usuario']['nombre']) ?></h3>
             <div class="botones-login">
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrear">Crear Entrada</button>
-                <a href="index.php?view=usuarios/mis-datos" class="btn btn-info">Mis Datos</a>
-                <a href="index.php?view=usuarios/logout" class="btn btn-danger">Cerrar Sesión</a>
+                <a href="crear-entrada.php">➕ Crear Entrada</a>
+                <a href="mis-datos.php">📁 Mis Datos</a>
+                <a href="logout.php">🚪 Cerrar Sesión</a>
             </div>
         </div>
     <?php endif; ?>
-</aside>
+

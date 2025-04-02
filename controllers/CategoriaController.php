@@ -1,7 +1,7 @@
 <?php
-require_once '../models/Entrada.php';
+require_once 'models/Entrada.php'; // Asegúrate de requerir el modelo correcto
 
-class CategoriasController {
+class CategoriaController { // Ojo con el nombre de la clase
     private $entradaModel;
 
     public function __construct() {

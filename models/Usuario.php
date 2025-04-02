@@ -1,4 +1,4 @@
-<?php
+<?php/*
 require_once "config/database.php";
 
 class Usuario {
@@ -50,5 +50,5 @@ class Usuario {
         }
         return $stmt->execute();
     }
-}
+}*/
 ?>

@@ -1,4 +1,4 @@
-<?php
+<?php/*
 require_once "config/database.php";
 
 class Categoria {
@@ -32,5 +32,5 @@ class Categoria {
         $stmt->execute([$nombre]);
         return $stmt->fetch(PDO::FETCH_ASSOC)['id'] ?? null;
     }
-}
+}*/
 ?>

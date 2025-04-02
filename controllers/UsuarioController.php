@@ -1,4 +1,4 @@
-<?php
+<?php/*
 require_once "models/Usuario.php";
 
 class UsuarioController {
@@ -101,5 +101,5 @@ class UsuarioController {
             }
         }
     }
-}
+}*/
 ?>

@@ -1,4 +1,4 @@
-<?php
+<?php/*
 require_once "models/Entrada.php";
 
 class EntradaController {
@@ -83,5 +83,5 @@ class EntradaController {
             echo "<script>alert('Error al eliminar la entrada.');</script>";
         }
     }
-}
+}*/
 ?>

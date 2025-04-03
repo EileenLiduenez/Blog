@@ -1,6 +1,6 @@
 <?php
 class Database {
-    public static function conectar() { // Debe ser "conectar"
+    public static function conectar() { 
         $conexion = new mysqli("localhost", "root", "", "blog");
         $conexion->set_charset("utf8");
         if ($conexion->connect_error) {

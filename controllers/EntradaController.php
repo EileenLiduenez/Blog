@@ -1,87 +1,69 @@
-<?php/*
+<?php
 require_once "models/Entrada.php";
+require_once "config/database.php";
 
 class EntradaController {
-    private $entradaModel;
-
-    public function __construct() {
-        $this->entradaModel = new Entrada();
-    }
-
-    // 📌 1. Obtener todas las entradas (para el inicio)
-    public function listarEntradas() {
-        $entradas = $this->entradaModel->obtenerTodas();
-        include "views/home.php";
-    }
-
-    // 📌 2. Obtener entradas por categoría
-    public function listarPorCategoria($categoria_id) {
-        $entradas = $this->entradaModel->obtenerPorCategoria($categoria_id);
-        include "views/categorias/ver.php";
-    }
-
-    // 📌 3. Obtener las últimas 5 entradas para la página de inicio
-    public function listarRecientes() {
-        $entradas = $this->entradaModel->obtenerRecientes();
-        include "views/home.php";
-    }
-
-    // 📌 4. Crear una nueva entrada (solo usuarios logueados)
-    public function crearEntrada() {
-        session_start();
-        if (!isset($_SESSION["usuario"])) {
-            echo "<script>alert('Debes iniciar sesión para crear una entrada.'); window.location.href='index.php';</script>";
-            return;
-        }
-
+    public function guardarEntrada() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $titulo = $_POST["titulo"];
-            $descripcion = $_POST["descripcion"];
+            session_start();
+
+            if (!isset($_SESSION['usuario'])) {
+                die("Error: No hay sesión iniciada.");
+            }
+
+            $titulo = $_POST["titulo"] ?? "";
+            $descripcion = $_POST["descripcion"] ?? "";
+            $categoria_id = $_POST["categoria"] ?? "";
             $usuario_id = $_SESSION["usuario"]["id"];
-            $categoria_id = $_POST["categoria_id"];
 
-            if ($this->entradaModel->crear($titulo, $descripcion, $usuario_id, $categoria_id)) {
-                echo "<script>alert('Entrada creada correctamente.'); window.location.href='index.php';</script>";
-            } else {
-                echo "<script>alert('Error al crear la entrada.');</script>";
+            if (empty($titulo) || empty($descripcion) || empty($categoria_id)) {
+                die("Error: Todos los campos son obligatorios.");
             }
-        }
-    }
 
-    // 📌 5. Editar una entrada (solo usuarios logueados y dueño de la entrada)
-    public function editarEntrada($id) {
-        session_start();
-        if (!isset($_SESSION["usuario"])) {
-            echo "<script>alert('Debes iniciar sesión para editar una entrada.'); window.location.href='index.php';</script>";
-            return;
-        }
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $titulo = $_POST["titulo"];
-            $descripcion = $_POST["descripcion"];
-            $categoria_id = $_POST["categoria_id"];
-
-            if ($this->entradaModel->editar($id, $titulo, $descripcion, $categoria_id)) {
-                echo "<script>alert('Entrada actualizada correctamente.'); window.location.href='index.php';</script>";
+            $entrada = new Entrada();
+            if ($entrada->crearEntrada($usuario_id, $categoria_id, $titulo, $descripcion)) {
+                header("Location: index.php");
+                exit();
             } else {
-                echo "<script>alert('Error al editar la entrada.');</script>";
+                die("Error al insertar en la BD.");
             }
-        }
-    }
-
-    // 📌 6. Eliminar una entrada (solo usuarios logueados y dueño de la entrada)
-    public function eliminarEntrada($id) {
-        session_start();
-        if (!isset($_SESSION["usuario"])) {
-            echo "<script>alert('Debes iniciar sesión para eliminar una entrada.'); window.location.href='index.php';</script>";
-            return;
-        }
-
-        if ($this->entradaModel->eliminar($id)) {
-            echo "<script>alert('Entrada eliminada correctamente.'); window.location.href='index.php';</script>";
         } else {
-            echo "<script>alert('Error al eliminar la entrada.');</script>";
+            die("Error: No se recibió POST.");
         }
     }
-}*/
+
+      // Editar entrada
+    public function editar() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $id = $_POST['id'];
+            $titulo = $_POST['titulo'];
+            $descripcion = $_POST['descripcion'];
+
+            $entrada = new Entrada();
+            $resultado = $entrada->editarEntrada($id, $titulo, $descripcion);
+
+            if ($resultado) {
+                header("Location: index.php");
+            } else {
+                echo "Error al actualizar la entrada.";
+            }
+        }
+    }
+
+    // Eliminar entrada
+    public function eliminar() {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+
+            $entrada = new Entrada();
+            $resultado = $entrada->eliminarEntrada($id);
+
+            if ($resultado) {
+                header("Location: index.php");
+            } else {
+                echo "Error al eliminar la entrada.";
+            }
+        }
+    }
+}
 ?>

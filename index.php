@@ -7,6 +7,8 @@
     <title>Blog Emo</title>
 </head>
 <body>
+
+<div class="todo">
     <?php include 'views/layouts/header.php'; ?>  
 
     <div id="contenedor">
@@ -20,6 +22,8 @@
     </div>
 
     <?php include 'views/layouts/footer.php'; ?>
+
+</div>
 
     <script src="assets/js/interaccion.js"></script>
 </body>

@@ -1,6 +1,10 @@
+<?php
+require_once "config/session.php";
+
+?>
 
     <h1>🖤 SobRe NoSotros</h1>
-    <p>Aquí comparto las historias de mis luchas internas, las cicatrices que marcan mi ser...</p>
+    <p>Aquí compartimos un poco de nosotroz, tres almas oscuras sin rumbo ni sentido</p>
 
     <section class="perfiles">
         <div class="perfil">
@@ -9,7 +13,7 @@
             <p>Back-end Developer, encadenado en la sombra del código, asegurando que todo funcione… aunque nadie lo vea.</p>
         </div>
         <div class="perfil">
-            <img src="assets/img/mina.jpg" alt="Miembro 2">
+            <img src="assets/img/sebas.jpg" alt="Miembro 2">
             <h2>Mina</h2>
             <p>Back-end Developer, sosteniendo este lugar con hilos rotos, asegurando que no se derrumbe… aunque a veces, parece que todo igual se desmorona.</p>
         </div>

@@ -1,7 +1,6 @@
 <?php
-session_start();
-require_once "controllers/usuarioController.php";
+require_once "controllers/UsuarioController.php";
 
-$controller = new UsuarioController();
-$controller->registrarUsuario();
+$usuarioController = new UsuarioController();
+$usuarioController->registrarUsuario();
 ?>

@@ -2,20 +2,27 @@
 require_once "config/database.php";
 
 class Usuario {
-    private $conn;
+
+    private $db;
 
     public function __construct() {
-        $db = new Database();
-        $this->conn = $db->conectar();
+        $this->db = Database::conectar();
+    }
+
+    public function registrar($nombre, $apellidos, $email, $password) {
+        $sql = "INSERT INTO usuarios (nombre, apellidos, email, password) VALUES (?, ?, ?, ?)";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$nombre, $apellidos, $email, $password]);
     }
 
     public function getByEmail($email) {
         $sql = "SELECT * FROM usuarios WHERE email = ?";
-        $stmt = $this->conn->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_assoc(); // 🔹 Aquí está la corrección
+        $resultado = $stmt->get_result();
+        return $resultado->fetch_assoc(); // ✅ MySQLi usa fetch_assoc()
     }
+    
 }
 ?>

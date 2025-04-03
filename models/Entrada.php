@@ -15,5 +15,29 @@ class Entrada {
         $resultado = $stmt->get_result();
         return $resultado->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function crearEntrada($usuario_id, $categoria_id, $titulo, $descripcion) {
+        $sql = "INSERT INTO entradas (usuario_id, categoria_id, titulo, descripcion, fecha) VALUES (?, ?, ?, ?, NOW())";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("iiss", $usuario_id, $categoria_id, $titulo, $descripcion);
+        return $stmt->execute();
+    }
+
+    // Editar una entrada en la base de datos
+    public function editarEntrada($id, $titulo, $descripcion) {
+        $sql = "UPDATE entradas SET titulo = ?, descripcion = ? WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("ssi", $titulo, $descripcion, $id);
+        return $stmt->execute();
+    }
+
+    // Eliminar una entrada de la base de datos
+    public function eliminarEntrada($id) {
+        $sql = "DELETE FROM entradas WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+    
 }
 ?>

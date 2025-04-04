@@ -3,6 +3,7 @@ require_once "models/Entrada.php";
 require_once "config/database.php";
 
 class EntradaController {
+
     public function guardarEntrada() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             session_start();
@@ -32,38 +33,72 @@ class EntradaController {
         }
     }
 
-      // Editar entrada
-    public function editar() {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+        public function eliminar(){
+        session_start();
+        if (isset($_POST['id'])) {
             $id = $_POST['id'];
-            $titulo = $_POST['titulo'];
-            $descripcion = $_POST['descripcion'];
 
-            $entrada = new Entrada();
-            $resultado = $entrada->editarEntrada($id, $titulo, $descripcion);
+            $entrada = new Entrada(); // Aquí se instancia el modelo correctamente
 
-            if ($resultado) {
-                header("Location: index.php");
+            if ($entrada->eliminarEntrada($id)) {
+                $_SESSION['mensaje'] = "Entrada eliminada con éxito.";
             } else {
-                echo "Error al actualizar la entrada.";
+                $_SESSION['error'] = "Error al eliminar la entrada.";
             }
         }
+
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
     }
 
-    // Eliminar entrada
-    public function eliminar() {
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-
-            $entrada = new Entrada();
-            $resultado = $entrada->eliminarEntrada($id);
-
-            if ($resultado) {
-                header("Location: index.php");
-            } else {
-                echo "Error al eliminar la entrada.";
+    public function editar() {
+        if (isset($_POST['id'], $_POST['titulo'], $_POST['descripcion'])) {
+            $id = $_POST['id'];
+            $titulo = trim($_POST['titulo']);
+            $descripcion = trim($_POST['descripcion']);
+    
+            if (!empty($titulo) && !empty($descripcion)) {
+                $entradaModel = new Entrada();
+    
+                if ($entradaModel->editarEntrada($id, $titulo, $descripcion)) {
+                    $_SESSION['mensaje'] = "Entrada actualizada con éxito.";
+                } else {
+                    $_SESSION['error'] = "Error al actualizar la entrada.";
+                }
             }
+        }
+    
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
+    }
+    
+
+
+
+
+    public function buscar() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['busqueda'])) {
+            $termino = trim($_POST['busqueda']);
+    
+            // Verificar que la búsqueda no esté vacía
+            if (empty($termino)) {
+                header("Location: index.php");
+                exit();
+            }
+    
+            // Importar el modelo y buscar las entradas
+            $entradaModel = new Entrada();
+            $resultados = $entradaModel->buscarEntradas($termino);
+    
+            // Cargar la vista con los resultados
+            require_once 'views/entradas/busqueda.php';
+        } else {
+            header("Location: index.php");
+            exit();
         }
     }
 }
+    
 ?>

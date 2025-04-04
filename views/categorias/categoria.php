@@ -56,10 +56,7 @@ $nombre_categoria = array_search($id_categoria, $categorias) ?: "Categoría Desc
             
             <?php include 'views/includes/modal.php'; ?>
 
-            <button class="btn btn-warning"
-                    onclick="abrirModalEditar('<?= $entrada['id'] ?>', '<?= htmlspecialchars($entrada['titulo'], ENT_QUOTES) ?>', `<?= htmlspecialchars($entrada['descripcion'], ENT_QUOTES) ?>`)">
-                    ✏️ Editar
-            </button>
+            <button class="btn-warning" onclick="abrirModalEditar('modalEditar<?= $entrada['id'] ?>')">✏️ Editar</button>
 
             <button class="btn btn-danger"
                 onclick="abrirModalEliminar('<?= $entrada['id'] ?>')">

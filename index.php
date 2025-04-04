@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="http://localhost/Blog/assets/css/style.css">
     <title>Blog Emo</title>
 </head>
 <body>
@@ -25,6 +25,6 @@
 
 </div>
 
-    <script src="assets/js/interaccion.js"></script>
+    <script src="http://localhost/Blog/assets/js/script.js"></script>
 </body>
 </html>

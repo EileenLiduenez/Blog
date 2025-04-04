@@ -56,51 +56,84 @@
         </div>
     </div>
 
-        <!-- Modal para crear una entrada -->
-    <div id="modalEntrada" class="modal">
-        <div class="modal-contenido">
-            <span class="cerrar" onclick="cerrarModal()">&times;</span>
-            <h2>➕ Crear Nueva Entrada</h2>
+       <!-- Modal para crear una entrada -->
+<div id="modalEntrada" class="modal">
+    <div class="modal-contenido">
+        <span class="cerrar" onclick="cerrarModalCrearEntrada()">&times;</span>
+        <h2>➕ Crear Nueva Entrada</h2>
 
-            <form action="crear_entrada.php" method="POST">
-                <label for="titulo">Título</label>
-                <input type="text" id="titulo" name="titulo" required>
+        <form action="crear_entrada.php" method="POST">
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo" name="titulo" required>
 
-                <label for="descripcion">descripcion</label>
-                <textarea id="descripcion" name="descripcion" required></textarea>
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" name="descripcion" required></textarea>
 
-                <label for="categoria">Categoría</label>
-                <select id="categoria" name="categoria" required>
+            <label for="categoria">Categoría</label>
+            <select id="categoria" name="categoria" required>
+                <?php
+                require_once "config/database.php";
+                $db = new Database();
+                $conn = $db->conectar();
+                $query = "SELECT * FROM categorias";
+                $categorias = $conn->query($query);
+                while ($categoria = $categorias->fetch_assoc()) :
+                ?>
+                    <option value="<?= $categoria['id'] ?>"><?= $categoria['nombre'] ?></option>
+                <?php endwhile; ?>
+            </select>
 
-                    <?php
-                    require_once "config/database.php";
-                    $db = new Database();
-                    $conn = $db->conectar();
-                    $query = "SELECT * FROM categorias";
-                    $categorias = $conn->query($query);
-                    while ($categoria = $categorias->fetch_assoc()) :
-                    ?>
-                        <option value="<?= $categoria['id'] ?>"><?= $categoria['nombre'] ?></option>
-                    <?php endwhile; ?>
-
-                </select>
-
-                <input type="submit" value="Guardar">
-            </form>
-
-        </div>
+            <input type="submit" value="Guardar">
+        </form>
     </div>
+</div>
 
+<!-- Estilos para el modal -->
+<style>
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-contenido {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+.cerrar {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.cerrar:hover {
+    color: #000;
+}
+</style>
 
-    <script>
-    function abrirModal() {
-        document.getElementById("modalEntrada").style.display = "block";
-    }
-
-    function cerrarModal() {
-        document.getElementById("modalEntrada").style.display = "none";
-    }
-    </script>
+<!-- JavaScript para abrir/cerrar modal de crear entrada -->
+<script>
+function abrirModalCrearEntrada() {
+    document.getElementById("modalEntrada").style.display = "block";
+}
+function cerrarModalCrearEntrada() {
+    document.getElementById("modalEntrada").style.display = "none";
+}
+</script>
 
 
 <?php endif; ?>

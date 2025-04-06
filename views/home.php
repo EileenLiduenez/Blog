@@ -1,7 +1,6 @@
 <?php
 require_once 'config/database.php';
 require_once "config/session.php";
-require_once 'helpers/categorias.php';
 
 
 // 🔔 Mostrar mensajes de éxito o error

@@ -8,15 +8,12 @@
     padding: 0px;
     font-family: sans-serif, Helvetica, Arial;
     text-decoration: none;
+    
 }
 
-.clearfix{
-    clear: both;
-    float: none;
-}
 
 body{
-    background: url(/assets/img/descarga\ \(19\).jpg) #F4F4F4;
+    background: url(../img/fondo.jpg);
 }
 
 .alerta{
@@ -52,29 +49,27 @@ body{
 /*LOGOTIPO*/
 #logo{
     text-align: center;
-    height: 110px;
+    margin: 20px;
 }
+
+
 
 @import url('https://fonts.googleapis.com/css2?family=Creepster&family=UnifrakturMaguntia&display=swap');
 
 #logo a {
     font-family: "Creepster", cursive; /* Alternativamente: "UnifrakturMaguntia", serif */
     font-weight: 900;
-    font-size: 50px;
+    font-size: 40px;
     color: #ffffff; /* Blanco puro */
-    text-shadow: 3px 3px 5px #000000, 0px 0px 10px #ff0000; /* Sombra negra con un ligero brillo rojo */
+    text-shadow: 3px 3px 5px #000000, 0px 0px 10px #FF00FF; /* Sombra negra con un ligero brillo rojo */
     transition: all 300ms ease-in-out;
-    line-height: 90px;
-    margin-left: 10px;
 }
 
 #logo a:hover {
-    color: #ff0000; /* Rojo sangre */
-    text-shadow: 5px 5px 10px #000000, 0px 0px 15px #ff0000; /* Sombra más intensa en hover */
+    color: #FF00FF; /* Rojo sangre */
+    text-shadow: 5px 5px 10px #000000, 0px 0px 15px #FF00FF; /* Sombra más intensa en hover */
     transform: scale(1.1); /* Efecto de agrandamiento */
 }
-
-
 /*MENU*/
 #menu {
     clear: both;
@@ -107,33 +102,22 @@ body{
 }
 
 #menu ul li a:hover {
-    background: #550000;
-    box-shadow: 0px 0px 10px #ff0000;
+    background: #ff00ff57;
+    box-shadow: 0px 0px 10px #FF00FF;
+    color: #fff;
+}
+#menu ul li a.active {
+    background: #FF00FF; 
     color: #fff;
 }
 
 /* CONTENIDO */
 #contenedor {
-    width: 85%;
+    width: 80%;
     height: auto;
     margin: 0px auto;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 0px 15px black;
-    border-radius: 8px;
-}
-/* CONTENIDO */
-#contenedor {
-    width: 85%;
-    height: auto;
-    margin: 0px auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 0px 15px black;
     border-radius: 8px;
 }
 
@@ -144,15 +128,18 @@ body{
     height: auto;
 }
 
+li{
+    color: #ccc;
+}
 .bloque {
     display: block;
     width: 90%;
     margin: 0px auto 35px;
     background: #111; /* Negro oscuro */
     padding: 15px;
-    box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.3), 
-                0px 5px 10px rgba(255, 0, 0, 0.2), 
-                0px 0px 2px #ff0000 inset, 
+    box-shadow: 0px 0px 5px rgba(195, 0, 255, 0.473), 
+                0px 5px 10px rgba(204, 0, 255, 0.247), 
+                0px 0px 2px #FF00FF inset, 
                 0px -3px 2px rgba(0, 0, 0, 0.5) inset;
     border: 1px solid #444;
     color: white;
@@ -160,8 +147,8 @@ body{
 
 .bloque h3 {
     margin-bottom: 15px;
-    font-family: "Creepster", cursive; /* Fuente más emo */
-    color: #ff0000; /* Rojo sangre */
+    font-family: "Creepster", cursive; 
+    color: #ff00ffb2; 
 }
 
 label,
@@ -171,11 +158,11 @@ input[type="password"] {
     display: block;
     width: 95%;
     margin: 2px 0;
-    background: #222; /* Fondo oscuro */
+    background: #222; 
     color: white;
-    border: 1px solid #ff0000;
+    border: 1px solid #FF00FF;
     padding: 5px;
-    font-family: "UnifrakturMaguntia", serif; /* Gótico */
+    font-family: "UnifrakturMaguntia", serif; 
 }
 
 input[type="text"]:focus,
@@ -183,7 +170,7 @@ input[type="email"]:focus,
 input[type="password"]:focus {
     border-color: #ffffff;
     outline: none;
-    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.7);
+    box-shadow: 0px 0px 10px rgba(204, 0, 255, 0.411);
 }
 
 /* Estilos para los botones */
@@ -195,82 +182,76 @@ input[type="submit"],
     border-radius: 5px;
     color: white;
     background: #222;
-    border: 1px solid #ff0000;
+    border: 1px solid #FF00FF;
     cursor: pointer;
     padding: 10px;
     font-weight: bold;
     text-transform: uppercase;
-    text-shadow: 2px 2px 5px black;
-    transition: all 0.3s ease-in-out;
 }
 
 .boton:hover {
-    background: #ff0000;
+    background: #FF00FF;
     border-color: #ffffff;
     text-shadow: 0px 0px 5px white;
     transform: scale(1.1);
 }
 
 /* Estilos específicos para botones de colores */
-.boton-naranja {
-    background: #aa3d00;
-    border-color: #ff5500;
+
+.boton-login{     margin: 5px 0;
+    display: block;
+    border-radius: 5px;
+    color: white;
+    background: #222;
+    border: 1px solid #FF00FF;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 5px black;
+    transition: all 0.3s ease-in-out; 
 }
-
-.boton-verde {
-    background: #006600;
-    border-color: #00ff00;
-}
-
-.boton-rojo {
-    background: #990000;
-    border-color: #ff0000;
-}
-
-.boton-naranja:hover,
-.boton-verde:hover,
-.boton-rojo:hover {
-    filter: brightness(1.3);
-    transform: scale(1.1);
-}
-
-
-
 /*PRINCIPAL*/
 #principal {
     float: left;
     width: 65%;
     min-height: 572px;
-    background: #111; /* Negro profundo */
+    background: #111; 
     border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.4);
-    margin-left: 20px;
-    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(174, 0, 255, 0.4);
+    padding: 40px;
     overflow: hidden;
     border: 1px solid #333;
 }
 
+.section{
+    text-decoration: none;
+    
+}
+ul{
+    list-style: none;
+}
 #principal a {
-    color: #ff0000; /* Rojo sangre */
+    color: #FF00FF; /* Rojo sangre */
     text-decoration: none;
     transition: all 0.3s ease-in-out;
 }
 
 #principal a:hover {
-    text-shadow: 0px 0px 10px #ff0000;
+    text-shadow: 0px 0px 10px #FF00FF;
     transform: scale(1.1);
 }
 
 #principal h1 {
     font-size: 40px;
     color: #fff;
-    text-shadow: 3px 3px 5px #ff0000, 0px 0px 10px black;
+    text-shadow: 3px 3px 5px #FF00FF, 0px 0px 10px black;
     font-family: "Creepster", cursive; /* Fuente más emo */
 }
 
 #principal h2 {
-    font-size: 24px;
-    color: #ff4444;
+    font-size: 2em;
+    color: #FF00FF;
     text-shadow: 2px 2px 5px black;
     font-family: "UnifrakturMaguntia", serif;
     margin-top: 25px;
@@ -280,58 +261,6 @@ input[type="submit"],
     margin-top: 8px;
     color: #ddd;
     font-size: 16px;
-}
-
-#ver-todas a {
-    display: block;
-    border-radius: 5px;
-    padding: 15px;
-    color: white;
-    background: #222;
-    border: 1px solid #ff0000;
-    cursor: pointer;
-    width: 160px;
-    margin: 50px auto 0;
-    text-align: center;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: all 0.3s ease-in-out;
-    text-shadow: 2px 2px 5px black;
-}
-
-#ver-todas a:hover {
-    background: #ff0000;
-    border-color: #fff;
-    text-shadow: 0px 0px 10px white;
-    transform: scale(1.1);
-}
-
-
-/*PIE DE PAGINA*/
-#pie {
-    clear: both;
-    width: 85%;
-    margin: 0px auto;
-    background: linear-gradient(to bottom, #111 0%, #000 100%); /* Degradado oscuro */
-    border: 1px solid #222;
-    border-bottom: none;
-    border-radius: 8px 8px 0px 0px;
-    color: #ccc;
-    height: auto;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0px -2px 10px black;
-}
-
-#pie a {
-    color: #ff4444;
-    font-weight: bold;
-    transition: all 0.3s ease-in-out;
-}
-
-#pie a:hover {
-    color: #ff0000;
-    text-shadow: 0px 0px 10px #ff0000;
 }
 /* Estilo para los comentarios */
 .comentario {
@@ -356,7 +285,7 @@ input[type="submit"],
 /* Correo del usuario */
 .comentario-correo {
     font-weight: bold;
-    color: #ff0000; /* Rojo sangre */
+    color: #ff0000; 
 }
 
 /* Hora del comentario */
@@ -368,21 +297,141 @@ input[type="submit"],
 .comentario-texto {
     font-size: 16px;
     line-height: 1.5;
-    color: #ddd; /* Gris claro */
+    color: #ddd; 
 }
 
 /* Botón para ver más comentarios */
 .boton-ver-todas {
-    display: inline-block;
+
     padding: 10px 20px;
-    background: #550000;
+    background: #00000077;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-    transition: background 0.3s ease;
+
 }
 
-.boton-ver-todas:hover {
-    background: #800000;
+
+.perfiles {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 2em;
+}
+
+.perfil {
+    background-color: #222;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+}
+
+.perfil img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; 
+    border: 3px solid #666; 
+    object-fit: cover;
+}
+
+/*PIE DE PAGINA*/
+#pie {
+    clear: both;
+    width: 85%;
+    margin: 0px auto;
+    background: linear-gradient(to bottom, #111 0%, #000 100%); 
+    border: 1px solid #222;
+    border-bottom: none;
+    border-radius: 8px 8px 0px 0px;
+    color: #ccc;
+    height: auto;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px -2px 10px black;
+}
+
+/* Estilos del modal */
+.modal-custom {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-contenido {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+.cerrar {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.cerrar:hover {
+    color: #000;
+}
+input[type="text"], textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button.btn-success {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button.btn-success:hover {
+    background-color: #218838;
+}
+button.btn-warning {
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button.btn-warning:hover {
+    background-color: #e0a800;
+}
+button.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button.btn-danger:hover {
+    background-color: #c82333;
+}
+
+
+
+.todo{
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }

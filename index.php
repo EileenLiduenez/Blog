@@ -1,40 +1,32 @@
-<?php
-require_once "core/App.php";
-require_once "core/Controller.php";
-require_once "config/database.php";
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://localhost/Blog/assets/css/style.css">
+    <title>Blog Emo</title>
+</head>
+<body>
 
-// Iniciar sesión para manejar autenticación de usuarios
-session_start();
+<?php require_once 'router.php'; ?>
 
-// Incluir el encabezado y la barra lateral
-require_once "views/layout/header.php";
-require_once "views/layout/sidebar.php";
+<div class="todo">
+    <?php include 'views/layouts/header.php'; ?>  
 
-// Conectar con la base de datos
-$db = Database::connect();
+    <div id="contenedor">
+        <main id="principal">
+            <?php include "views/layouts/main.php"; ?> 
+        </main>
 
-// Obtener las últimas entradas
-require_once "models/Entrada.php";
-$entradaModel = new Entrada();
-$entradas = $entradaModel->getUltimasEntradas();
-?>
-
-<div id="principal">
-    <h1>Últimas entradas</h1>
-
-    <?php foreach ($entradas as $entradas) : ?>
-        <article class="entrada">
-            <a href="index.php?controller=entrada&action=ver&id=<?= $entradas['id'] ?>">
-                <h2><?= htmlspecialchars($entradas['titulo']) ?></h2>
-                <span class="fecha"><?= htmlspecialchars($entradas['categoria']) ?> | <?= $entradas['fecha'] ?></span>
-                <p><?= substr(htmlspecialchars($entradas['descripcion']), 0, 150) ?>...</p>
-            </a>
-        </article>
-    <?php endforeach; ?>
-
-    <div id="ver-todas">
-        <a href="index.php?controller=entrada&action=index">Ver todas las entradas</a>
+        <aside id="sidebar">
+            <?php include 'views/layouts/sidebar.php'; ?>
+        </aside>
     </div>
+
+    <?php include 'views/layouts/footer.php'; ?>
+
 </div>
 
-<?php require_once "views/layout/footer.php"; ?>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

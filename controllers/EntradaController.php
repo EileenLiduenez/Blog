@@ -1,95 +1,107 @@
 <?php
-require_once "core/Controller.php";
 require_once "models/Entrada.php";
+require_once "config/database.php";
 
-class EntradaController extends Controller {
+class EntradaController {
 
-    public function index() {
-        $entradaModel = new Entrada();
-        $entradas = $entradaModel->getEntradas();
-        $this->loadView("entradas/index", ["entradas" => $entradas]);
-    }
-
-    public function crear() {
-        if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php?controller=usuario&action=login");
-            exit();
-        }
-
+    public function guardarEntrada() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $titulo = trim($_POST['titulo']);
-            $contenido = trim($_POST['contenido']);
-            $categoria_id = $_POST['categoria'];
-            $usuario_id = $_SESSION['usuario']['id'];
+            session_start();
 
-            $entradaModel = new Entrada();
-            if ($entradaModel->crearEntrada($titulo, $contenido, $categoria_id, $usuario_id)) {
-                header("Location: index.php?controller=entrada&action=index");
+            if (!isset($_SESSION['usuario'])) {
+                die("Error: No hay sesión iniciada.");
+            }
+
+            $titulo = $_POST["titulo"] ?? "";
+            $descripcion = $_POST["descripcion"] ?? "";
+            $categoria_id = $_POST["categoria"] ?? "";
+            $usuario_id = $_SESSION["usuario"]["id"];
+
+            if (empty($titulo) || empty($descripcion) || empty($categoria_id)) {
+                die("Error: Todos los campos son obligatorios.");
+            }
+
+            $entrada = new Entrada();
+            if ($entrada->crearEntrada($usuario_id, $categoria_id, $titulo, $descripcion)) {
+                header("Location: index.php");
                 exit();
             } else {
-                echo "Error al crear la entrada.";
+                die("Error al insertar en la BD.");
             }
         } else {
-            $this->loadView("entradas/crear");
+            die("Error: No se recibió POST.");
         }
+    }
+
+
+
+        public function eliminar(){
+        session_start();
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+
+            $entrada = new Entrada();
+
+            if ($entrada->eliminarEntrada($id)) {
+                $_SESSION['mensaje'] = "Entrada eliminada con éxito.";
+            } else {
+                $_SESSION['error'] = "Error al eliminar la entrada.";
+            }
+        }
+
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
     }
 
     public function editar() {
-        if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php?controller=usuario&action=login");
-            exit();
-        }
-
-        $entradaModel = new Entrada();
-        $id = $_GET['id'];
-        $entrada = $entradaModel->obtenerEntradaPorId($id);
-
-        // 🔍 Verificar que el usuario sea el dueño de la entrada
-        if ($entrada['usuario_id'] != $_SESSION['usuario']['id']) {
-            echo "No tienes permiso para editar esta entrada.";
-            return;
-        }
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        session_start(); // ← Añade esto
+    
+        if (isset($_POST['id'], $_POST['titulo'], $_POST['descripcion'])) {
+            $id = $_POST['id'];
             $titulo = trim($_POST['titulo']);
-            $contenido = trim($_POST['contenido']);
-            $categoria_id = $_POST['categoria'];
-
-            if ($entradaModel->editarEntrada($id, $titulo, $contenido, $categoria_id)) {
-                header("Location: index.php?controller=entrada&action=index");
-                exit();
-            } else {
-                echo "Error al actualizar la entrada.";
+            $descripcion = trim($_POST['descripcion']);
+    
+            if (!empty($titulo) && !empty($descripcion)) {
+                $entradaModel = new Entrada();
+    
+                if ($entradaModel->editarEntrada($id, $titulo, $descripcion)) {
+                    $_SESSION['mensaje'] = "Entrada actualizada con éxito.";
+                } else {
+                    $_SESSION['error'] = "Error al actualizar la entrada.";
+                }
             }
-        } else {
-            $this->loadView("entradas/editar", ["entrada" => $entrada]);
         }
+    
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
     }
+    
+    
 
-    public function eliminar() {
-        if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php?controller=usuario&action=login");
-            exit();
-        }
 
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $entradaModel = new Entrada();
-            $entrada = $entradaModel->obtenerEntradaPorId($id);
 
-            // 🔍 Verificar que el usuario sea el dueño de la entrada antes de eliminar
-            if ($entrada['usuario_id'] != $_SESSION['usuario']['id']) {
-                echo "No tienes permiso para eliminar esta entrada.";
-                return;
-            }
 
-            if ($entradaModel->eliminarEntrada($id)) {
-                header("Location: index.php?controller=entrada&action=index");
+    public function buscar() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['busqueda'])) {
+            $termino = trim($_POST['busqueda']);
+    
+            // Verificar que la búsqueda no esté vacía
+            if (empty($termino)) {
+                header("Location: index.php");
                 exit();
-            } else {
-                echo "Error al eliminar la entrada.";
             }
+    
+            // Importar el modelo y buscar las entradas
+            $entradaModel = new Entrada();
+            $resultados = $entradaModel->buscarEntradas($termino);
+    
+            // Cargar la vista con los resultados
+            require_once 'views/entradas/busqueda.php';
+        } else {
+            header("Location: index.php");
+            exit();
         }
     }
 }
+    
 ?>

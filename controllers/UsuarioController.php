@@ -1,54 +1,63 @@
 <?php
-require_once "core/Controller.php";
-require_once "models/Usuario.php";
+require_once "models/Usuario.php"; // Asegúrate de tener este modelo
 
-class UsuarioController extends Controller {
+class UsuarioController {
 
-    public function registro() {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $nombre = trim($_POST['nombre']);
-            $email = trim($_POST['email']);
-            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    public function loginUsuario() {
+        require_once "config/database.php";
 
-            $usuarioModel = new Usuario();
-            $resultado = $usuarioModel->crearUsuario($nombre, $email, $password);
-
-            if ($resultado) {
-                $_SESSION['mensaje'] = "Registro exitoso";
-                $this->redirect("index.php?controller=usuario&action=login");
-            } else {
-                $_SESSION['error'] = "Error al registrar usuario";
-                $this->redirect("index.php?controller=usuario&action=registro");
-            }
-        } else {
-            $this->loadView("usuario/registro");
-        }
-    }
-
-    public function login() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email = trim($_POST['email']);
             $password = trim($_POST['password']);
 
             $usuarioModel = new Usuario();
-            $usuario = $usuarioModel->obtenerUsuarioPorEmail($email);
+            $usuario = $usuarioModel->getByEmail($email);
 
             if ($usuario && password_verify($password, $usuario['password'])) {
-                $_SESSION['usuario'] = $usuario;
-                $this->redirect("index.php");
+                $_SESSION['usuario'] = [
+                    'id' => $usuario['id'],
+                    'nombre' => $usuario['nombre'],
+                    'email' => $usuario['email']
+                ];
+                header("Location: index.php");
+                exit();
             } else {
-                $_SESSION['error'] = "Credenciales incorrectas";
-                $this->redirect("index.php?controller=usuario&action=login");
+                $_SESSION['error_login'] = "Credenciales incorrectas";
+                header("Location: index.php");
+                exit();
             }
-        } else {
-            $this->loadView("usuario/login");
         }
     }
 
-    public function logout() {
-        session_start();
-        session_destroy();
-        $this->redirect("index.php");
+    public function registrarUsuario() {
+        require_once "config/database.php";
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $nombre = trim($_POST['nombre']);
+            $apellidos = trim($_POST['apellidos']); // Capturar el apellido
+            $email = trim($_POST['email']);
+            $password = trim($_POST['password']);
+
+            if (!empty($nombre) && !empty($apellidos) && !empty($email) && !empty($password)) {
+                $usuarioModel = new Usuario();
+                
+                // Hashear la contraseña
+                $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+                
+                // Llamar al modelo para registrar al usuario
+                $registroExitoso = $usuarioModel->registrar($nombre, $apellidos, $email, $passwordHash);
+
+                if ($registroExitoso) {
+                    $_SESSION['mensaje'] = "Usuario registrado con éxito. Ahora puedes iniciar sesión.";
+                    header("Location: index.php");
+                    exit();
+                } else {
+                    $_SESSION['error_registro'] = "Error al registrar el usuario.";
+                }
+            } else {
+                $_SESSION['error_registro'] = "Todos los campos son obligatorios.";
+            }
+        }
     }
 }
 ?>

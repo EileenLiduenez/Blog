@@ -12,8 +12,8 @@
         <nav id="menu">
             <ul class="nav">
                 <li><a href="index.php">Inicio</a></li> 
-                <li><a href="index.php?view=music">Música</a></li>
-                <li><a href="index.php?view=reflex">Reflexiones</a></li>
+                <li><a href="index.php?view=musica">Música</a></li>
+                <li><a href="index.php?view=reflexiones">Reflexiones</a></li>
                 <li><a href="index.php?view=love">Emo Love</a></li>
                 <li><a href="index.php?view=sobreemos">Sobre Emos</a></li>
                 <li><a href="index.php?view=about">Sobre Nosotros</a></li>

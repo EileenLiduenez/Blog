@@ -2,9 +2,8 @@
 
 if (isset($_GET['view'])) {
     $view = $_GET['view'];
-
     // Categorías con entradas dinámicas
-    $categorias_con_entradas = ['music', 'reflex', 'love'];
+    $categorias_con_entradas = ['musica', 'reflexiones', 'love'];
 
     if (in_array($view, $categorias_con_entradas)) {
         include "views/categorias/categoria.php";

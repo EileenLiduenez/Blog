@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<?php require_once 'router.php'; ?>
+
 <div class="todo">
     <?php include 'views/layouts/header.php'; ?>  
 

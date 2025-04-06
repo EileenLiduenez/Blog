@@ -50,13 +50,13 @@
     <div id="usuario" class="bloque">
         <h3>Bienvenido, <?= htmlspecialchars($_SESSION['usuario']['nombre']) ?></h3>
         <div class="botones-login">
-            <button onclick="abrirModal()">➕ Crear Entrada</button> <!-- Abre el modal -->
+            <button onclick="abrirModalCrearEntrada()">➕ Crear Entrada</button> <!-- Abre el modal -->
             <a href="mis-datos.php">📁 Mis Datos</a>
             <a href="logout.php">🚪 Cerrar Sesión</a>
         </div>
     </div>
 
-       <!-- Modal para crear una entrada -->
+<!-- Modal para crear una entrada -->
 <div id="modalEntrada" class="modal">
     <div class="modal-contenido">
         <span class="cerrar" onclick="cerrarModalCrearEntrada()">&times;</span>

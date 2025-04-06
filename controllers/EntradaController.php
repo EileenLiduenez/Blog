@@ -40,7 +40,7 @@ class EntradaController {
         if (isset($_POST['id'])) {
             $id = $_POST['id'];
 
-            $entrada = new Entrada(); // Aquí se instancia el modelo correctamente
+            $entrada = new Entrada();
 
             if ($entrada->eliminarEntrada($id)) {
                 $_SESSION['mensaje'] = "Entrada eliminada con éxito.";
@@ -54,6 +54,8 @@ class EntradaController {
     }
 
     public function editar() {
+        session_start(); // ← Añade esto
+    
         if (isset($_POST['id'], $_POST['titulo'], $_POST['descripcion'])) {
             $id = $_POST['id'];
             $titulo = trim($_POST['titulo']);
@@ -73,6 +75,7 @@ class EntradaController {
         header("Location: " . $_SERVER['HTTP_REFERER']);
         exit();
     }
+    
     
 
 

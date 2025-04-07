@@ -69,8 +69,7 @@ class Entrada {
     public function buscarEntradas($termino) {
         $conexion = Database::conectar();
     
-        // Consulta SQL para buscar en título o descripción
-        $sql = "SELECT e.id, e.titulo, e.descripcion, e.fecha, c.nombre AS categoria_nombre, u.nombre AS usuario_nombre 
+        $sql = "SELECT e.id, e.titulo, e.descripcion, e.fecha, c.nombre AS categoria_nombre, CONCAT(u.nombre, ' ', u.apellidos) AS usuario_nombre 
                 FROM entradas e
                 INNER JOIN categorias c ON e.categoria_id = c.id
                 INNER JOIN usuarios u ON e.usuario_id = u.id
@@ -78,7 +77,7 @@ class Entrada {
                 ORDER BY e.fecha DESC";
     
         $stmt = $conexion->prepare($sql);
-        $busqueda = "%" . $termino . "%"; // Para buscar coincidencias parciales
+        $busqueda = "%" . $termino . "%"; 
         $stmt->bind_param("ss", $busqueda, $busqueda);
         $stmt->execute();
     

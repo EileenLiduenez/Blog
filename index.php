@@ -8,7 +8,12 @@
 </head>
 <body>
 
-<?php require_once 'router.php'; ?>
+<?php 
+require_once 'router.php'; 
+require_once 'helpers/utils.php';
+?>
+
+
 
 <div class="todo">
     <?php include 'views/layouts/header.php'; ?>  

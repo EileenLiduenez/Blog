@@ -1,29 +1,58 @@
-<?php /*
-if (!isset($_SESSION["usuario"])) {
-    echo "<script>alert('Debes iniciar sesión para ver tus datos.'); window.location.href='index.php';</script>";
-    exit();
-} ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://localhost/Blog/assets/css/style.css">
+    <title>Blog Emo</title>
+</head>
+<body>
 
-<h1>👤 Mis Datos</h1>
+<?php require_once 'router.php'; ?>
 
-<div class="perfil-usuario">
-    <p><strong>Nombre:</strong> <?= htmlspecialchars($_SESSION["usuario"]["nombre"]) ?></p>
-    <p><strong>Apellidos:</strong> <?= htmlspecialchars($_SESSION["usuario"]["apellidos"]) ?></p>
-    <p><strong>Email:</strong> <?= htmlspecialchars($_SESSION["usuario"]["email"]) ?></p>
-    <p><strong>Fecha de Registro:</strong> <?= $_SESSION["usuario"]["fecha"] ?></p>
+<div class="todo">
+    <?php include 'views/layouts/header.php'; ?>  
+
+    <div id="contenedor">
+        <main id="principal">
+                <?php if (isset($_SESSION['usuario'])): ?>
+            <h2>Mis datos</h2>
+
+            <?php if (isset($_SESSION['completado'])): ?>
+                <div class="alerta exito">
+                    <?= $_SESSION['completado'] ?>
+                </div>
+            <?php elseif (isset($_SESSION['errores']['general'])): ?>
+                <div class="alerta error">
+                    <?= $_SESSION['errores']['general'] ?>
+                </div>
+            <?php endif; ?>
+
+            <form action="index.php?controller=usuario&action=actualizarUsuario" method="POST">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" value="<?= $_SESSION['usuario']['nombre'] ?>" required>
+
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" name="apellidos" value="<?= $_SESSION['usuario']['apellidos'] ?>" required>
+
+                <label for="email">Email:</label>
+                <input type="email" name="email" value="<?= $_SESSION['usuario']['email'] ?>" required>
+
+                <input type="submit" value="Actualizar">
+            </form>
+
+            <?php Utils::borrarErrores(); ?>
+
+        <?php else: ?>
+            <p>Debes iniciar sesión para ver esta página.</p>
+        <?php endif; ?>
+
+    </div>
+
+    <?php include 'views/layouts/footer.php'; ?>
+
 </div>
 
-<h2>✏️ Editar Datos</h2>
-<form action="index.php?view=usuarios/editar" method="POST">
-    <label for="nombre">Nombre:</label>
-    <input type="text" name="nombre" value="<?= htmlspecialchars($_SESSION["usuario"]["nombre"]) ?>" required>
-
-    <label for="apellidos">Apellidos:</label>
-    <input type="text" name="apellidos" value="<?= htmlspecialchars($_SESSION["usuario"]["apellidos"]) ?>" required>
-
-    <label for="password">Nueva Contraseña (dejar en blanco para no cambiar):</label>
-    <input type="password" name="password">
-
-    <input type="submit" value="Actualizar" class="boton">
-</form>
-*/
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

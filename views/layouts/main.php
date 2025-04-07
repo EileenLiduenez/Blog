@@ -11,6 +11,9 @@ if (isset($_GET['view'])) {
         include "views/categorias/" . basename($view) . ".php";
     } else {
         switch ($view) {
+            case 'home':
+                include 'views/home.php';
+                break;
             case 'buscar':
                 include 'views/categorias/buscar.php';
                 break;
@@ -27,7 +30,7 @@ if (isset($_GET['view'])) {
                 include 'views/usuarios/logout.php';
                 break;
             default:
-                include 'views/home.php';
+                echo "<p>Vista no encontrada.</p>";
                 break;
         }
     }

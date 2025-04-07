@@ -3,7 +3,7 @@ require_once 'config/database.php';
 require_once "config/session.php";
 
 
-// 🔔 Mostrar mensajes de éxito o error
+
 if (isset($_SESSION['mensaje'])): ?>
     <div class="mensaje exito"><?= $_SESSION['mensaje'] ?></div>
     <?php unset($_SESSION['mensaje']);
@@ -14,10 +14,8 @@ if (isset($_SESSION['error'])): ?>
     <?php unset($_SESSION['error']);
 endif;
 
-// 🔎 Buscar entradas (si hay término de búsqueda)
 $db = Database::conectar();
-$buscar = isset($_GET['q']) ? trim($_GET['q']) : '';
-$entradas = [];
+$buscar = isset($_GET['q']) ? trim($_GET['q']) : ''; // Captura la búsqueda
 
 if (!empty($buscar)) {
     $sql = "SELECT e.id, e.titulo, e.descripcion, e.fecha, e.usuario_id, e.categoria_id, 
@@ -27,8 +25,9 @@ if (!empty($buscar)) {
             INNER JOIN usuarios u ON e.usuario_id = u.id
             WHERE e.titulo LIKE ? OR e.descripcion LIKE ? 
             ORDER BY e.fecha DESC";
+
     $stmt = $db->prepare($sql);
-    $buscar_param = '%' . $buscar . '%';
+    $buscar_param = "%$buscar%";
     $stmt->bind_param("ss", $buscar_param, $buscar_param);
 } else {
     $sql = "SELECT e.id, e.titulo, e.descripcion, e.fecha, e.usuario_id, e.categoria_id, 
@@ -36,14 +35,13 @@ if (!empty($buscar)) {
             FROM entradas e
             INNER JOIN categorias c ON e.categoria_id = c.id
             INNER JOIN usuarios u ON e.usuario_id = u.id
-            ORDER BY e.fecha DESC
-            LIMIT 5";
+            ORDER BY e.fecha DESC LIMIT 5";
+
     $stmt = $db->prepare($sql);
 }
 
 $stmt->execute();
-$resultado = $stmt->get_result();
-$entradas = $resultado->fetch_all(MYSQLI_ASSOC);
+$entradas = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <h1>🖤 Últimos Lamentos</h1>
@@ -52,10 +50,10 @@ $entradas = $resultado->fetch_all(MYSQLI_ASSOC);
     <p>No se encontraron entradas.</p>
 <?php else : ?>
     <?php foreach ($entradas as $entrada) : ?>
-        <div class="entrada" id="entrada-<?= $entrada['id'] ?>">
+        <div class="entrada">
             <h2><?= htmlspecialchars($entrada["titulo"]) ?></h2>
-            <p><strong>Categoría:</strong> <?= htmlspecialchars($entrada["categoria_nombre"]) ?></p>
-            <p><strong>Autor:</strong> <?= htmlspecialchars($entrada["usuario_nombre"]) ?></p>
+            <p><?= htmlspecialchars($entrada["categoria_nombre"]) ?></p>
+            <p><?= htmlspecialchars($entrada["usuario_nombre"]) ?></p>
             <p><small><?= htmlspecialchars($entrada["fecha"]) ?></small></p>
             <p><?= nl2br(htmlspecialchars(substr($entrada["descripcion"], 0, 150))) ?>...</p>
 
@@ -117,7 +115,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const objetivo = document.querySelector(hash);
             if (objetivo) {
                 objetivo.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                objetivo.style.backgroundColor = '#ffeeba'; // Resaltado suave
+                objetivo.style.backgroundColor = '#ffeeba'; 
                 setTimeout(() => {
                     objetivo.style.backgroundColor = '';
                 }, 1500);

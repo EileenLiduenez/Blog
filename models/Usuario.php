@@ -23,6 +23,15 @@ class Usuario {
         $resultado = $stmt->get_result();
         return $resultado->fetch_assoc(); 
     }
+
+    public function actualizar($id, $nombre, $apellidos, $email) {
+        $sql = "UPDATE usuarios SET nombre = ?, apellidos = ?, email = ? WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("sssi", $nombre, $apellidos, $email, $id);
+        return $stmt->execute();
+    }
+    
+    
     
 }
 ?>

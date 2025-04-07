@@ -6,10 +6,8 @@ require_once 'config/database.php';
 $db = Database::conectar();
 $categoriaController = new CategoriaController();
 
-// Recuperar la categoría desde la URL (decodificada por si tiene espacios)
 $view_categoria = isset($_GET['view']) ? urldecode($_GET['view']) : null;
 
-// Buscar el ID de la categoría según el nombre
 $id_categoria = null;
 
 if ($view_categoria !== null) {
@@ -21,7 +19,7 @@ if ($view_categoria !== null) {
     $id_categoria = $fila['id'] ?? null;
 }
 
-// Inicializar la variable de entradas
+
 $entradas = [];
 
 if ($id_categoria !== null) {
@@ -38,7 +36,6 @@ if ($id_categoria !== null) {
     $entradas = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 }
 
-// Mostrar nombre original de la categoría
 $nombre_categoria = $view_categoria ?: "Categoría Desconocida";
 ?>
 

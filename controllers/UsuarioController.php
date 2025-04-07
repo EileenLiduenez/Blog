@@ -1,11 +1,10 @@
 <?php
-require_once "models/Usuario.php"; // Asegúrate de tener este modelo
+require_once "models/Usuario.php";
+require_once "helpers/utils.php";
 
 class UsuarioController {
 
     public function loginUsuario() {
-        require_once "config/database.php";
-
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email = trim($_POST['email']);
             $password = trim($_POST['password']);
@@ -17,6 +16,7 @@ class UsuarioController {
                 $_SESSION['usuario'] = [
                     'id' => $usuario['id'],
                     'nombre' => $usuario['nombre'],
+                    'apellidos' => $usuario['apellidos'],
                     'email' => $usuario['email']
                 ];
                 header("Location: index.php");
@@ -30,25 +30,20 @@ class UsuarioController {
     }
 
     public function registrarUsuario() {
-        require_once "config/database.php";
-
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $nombre = trim($_POST['nombre']);
-            $apellidos = trim($_POST['apellidos']); // Capturar el apellido
+            $apellidos = trim($_POST['apellidos']);
             $email = trim($_POST['email']);
             $password = trim($_POST['password']);
 
             if (!empty($nombre) && !empty($apellidos) && !empty($email) && !empty($password)) {
                 $usuarioModel = new Usuario();
-                
-                // Hashear la contraseña
                 $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-                
-                // Llamar al modelo para registrar al usuario
+
                 $registroExitoso = $usuarioModel->registrar($nombre, $apellidos, $email, $passwordHash);
 
                 if ($registroExitoso) {
-                    $_SESSION['mensaje'] = "Usuario registrado con éxito. Ahora puedes iniciar sesión.";
+                    $_SESSION['mensaje'] = "Usuario registrado con éxito.";
                     header("Location: index.php");
                     exit();
                 } else {
@@ -57,6 +52,52 @@ class UsuarioController {
             } else {
                 $_SESSION['error_registro'] = "Todos los campos son obligatorios.";
             }
+        }
+    }
+
+    public function logout() {
+        if (isset($_SESSION['usuario'])) {
+            unset($_SESSION['usuario']);
+        }
+
+        header("Location: index.php");
+        exit();
+    }
+
+    public function misDatos() {
+        if (!isset($_SESSION['usuario'])) {
+            header("Location: index.php");
+            exit();
+        }
+
+        require_once 'views/usuarios/mis-datos.php';
+    }
+
+    public function actualizarUsuario() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['usuario'])) {
+            $id = $_SESSION['usuario']['id'];
+            $nombre = trim($_POST['nombre']);
+            $apellidos = trim($_POST['apellidos']);
+            $email = trim($_POST['email']);
+
+            if (!empty($nombre) && !empty($apellidos) && !empty($email)) {
+                $usuarioModel = new Usuario();
+                $resultado = $usuarioModel->actualizar($id, $nombre, $apellidos, $email);
+
+                if ($resultado) {
+                    $_SESSION['usuario']['nombre'] = $nombre;
+                    $_SESSION['usuario']['apellidos'] = $apellidos;
+                    $_SESSION['usuario']['email'] = $email;
+                    $_SESSION['completado'] = "Datos actualizados correctamente.";
+                } else {
+                    $_SESSION['errores']['general'] = "Error al actualizar.";
+                }
+            } else {
+                $_SESSION['errores']['general'] = "Todos los campos son obligatorios.";
+            }
+
+            header("Location: index.php?controller=usuario&action=misDatos");
+            exit();
         }
     }
 }

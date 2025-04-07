@@ -51,7 +51,7 @@
         <h3>Bienvenido, <?= htmlspecialchars($_SESSION['usuario']['nombre']) ?></h3>
         <div class="botones-login">
             <button onclick="abrirModalCrearEntrada()">➕ Crear Entrada</button> <!-- Abre el modal -->
-            <a href="mis-datos.php">📁 Mis Datos</a>
+            <li><a href="index.php?controller=usuario&action=misDatos">Mis datos</a></li>
             <a href="logout.php">🚪 Cerrar Sesión</a>
         </div>
     </div>

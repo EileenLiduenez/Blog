@@ -85,18 +85,15 @@ class EntradaController {
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['busqueda'])) {
             $termino = trim($_POST['busqueda']);
     
-            // Verificar que la búsqueda no esté vacía
             if (empty($termino)) {
                 header("Location: index.php");
                 exit();
             }
-    
-            // Importar el modelo y buscar las entradas
+
             $entradaModel = new Entrada();
             $resultados = $entradaModel->buscarEntradas($termino);
     
-            // Cargar la vista con los resultados
-            require_once 'views/entradas/busqueda.php';
+            require_once 'views/includes/busqueda.php';
         } else {
             header("Location: index.php");
             exit();
